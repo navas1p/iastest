@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharjah Indian Association | Serving the Community</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #003366; /* Deep Navy Blue */
+            --accent: #FF9933;  /* Saffron Orange */
+            --light-bg: #f9f9f9;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --success: #138808; /* Indian Green */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .top-info span {
+            margin-right: 20px;
+        }
+
+        .top-social a {
+            color: var(--white);
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .top-social a:hover { color: var(--accent); }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 15px 5%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--accent); font-size: 30px; }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .btn-donate {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-donate:hover { background-color: #e68a00; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            background: url('images/background.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-hero {
+            padding: 15px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover { background-color: #e68a00; }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover { background-color: var(--white); color: var(--primary); }
+
+        .btn-read-more {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 12px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-left: 15px;
+        }
+        .lang-btn {
+            border: 1px solid #d9d9d9;
+            background: #fff;
+            color: var(--text-dark);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .lang-btn.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .btn-read-more:hover { background-color: #e68a00; }
+
+        /* --- QUICK SERVICES GRID --- */
+        .services-strip {
+            transform: translateY(-50px);
+            position: relative;
+            z-index: 10;
+            padding: 0 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .service-card:hover { transform: translateY(-10px); }
+
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .service-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* --- ABOUT & PRESIDENT MESSAGE --- */
+        .about-section {
+            padding: 50px 5%;
+            background-color: var(--light-bg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .about-content h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin-top: 10px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .leader-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .president-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .president-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #ddd;
+            object-fit: cover;
+            flex: 0 0 90px;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 44px; /* ~2 lines */
+        }
+
+        .quote.expanded {
+            -webkit-line-clamp: unset;
+            overflow: visible;
+            max-height: none;
+        }
+
+        /* --- UPCOMING EVENTS --- */
+        .events-section {
+            padding: 80px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: var(--white);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover { transform: scale(1.02); }
+
+        .event-img {
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+        }
+        
+        .date-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .event-details {
+            padding: 25px;
+        }
+
+        .event-details h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .event-details p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .btn-event {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* --- NEWS SECTION --- */
+        .news-section {
+            background: var(--light-bg);
+            padding: 70px 5%;
+            color: var(--text-dark);
+        }
+
+        .news-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .news-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .news-media {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-body {
+            padding: 18px 20px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .news-body h3 {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .news-body p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .news-cta {
+            margin-top: auto;
+            display: inline-block;
+            text-align: center;
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .news-cta:hover {
+            transform: translateY(-1px);
+            background: #e68a00;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        
+        .footer-col ul li a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--accent); }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .about-section { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Hidden for simplicity */
+            .top-bar { flex-direction: column; gap: 10px; text-align: center; }
+            .services-strip { transform: none; padding: 40px 5%; }
+            .hero { height: 70vh; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fas fa-phone-alt"></i> <span data-i18n="topPhone">+971 6 123 4567</span></span>
+            <span><i class="fas fa-envelope"></i> <span data-i18n="topEmail">info@iassharjah.com</span></span>
+        </div>
+        <div class="top-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#" class="logo">
+            <img src="/images/logo .jpg" alt="SIA Logo" style="height: 60px; margin-right: 15px;">
+        </a>
+        <div class="nav-links">
+            <a href="#" data-i18n="navHome">Home</a>
+            <a href="#" data-i18n="navAbout">About Us</a>
+            <a href="#" data-i18n="navCommittee">Committee</a>
+            <a href="services.html" data-i18n="navServices">Services</a>
+            <a href="#" data-i18n="navEducation">Education</a>
+            <a href="#" data-i18n="navEvents">Events</a>
+            <a href="contact.html" data-i18n="navContact">Contact</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="hi">Hindi</button>
+                <button class="lang-btn" data-lang="ml">Malayalam</button>
+            </div>
+            <a href="#" class="btn-donate" data-i18n="btnMembership">Membership</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" data-i18n="heroTitle">A Home Away From Home</h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">Promoting Indian culture, welfare, and educational excellence in the UAE since 1979.</p>
+            <div class="hero-btn-group">
+                <a href="#" class="btn-hero btn-primary" data-i18n="heroJoin">Join Community</a>
+                <a href="#" class="btn-hero btn-outline" data-i18n="heroHistory">Our History</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK SERVICES STRIP -->
+    <div class="services-strip">
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-landmark service-icon"></i>
+                <h3 data-i18n="serviceCulturalTitle">Cultural Events</h3>
+                <p data-i18n="serviceCulturalDesc">Auditorium bookings and event management for cultural programs.</p>
+                <a href="cultural-events.html" class="service-link" data-i18n="serviceCulturalLink">Book Venue -></a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-passport service-icon"></i>
+                <h3 data-i18n="servicePassportTitle">Consular Services</h3>
+                <p data-i18n="servicePassportDesc">Consular assistance for passport renewals, attestations, and documentation.</p>
+                <a href="#" class="service-link" data-i18n="servicePassportLink">Learn More -></a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hand-holding-heart service-icon"></i>
+                <h3 data-i18n="serviceWelfareTitle">Community Welfare</h3>
+                <p data-i18n="serviceWelfareDesc">Providing support, medical assistance, and repatriation help to those in need.</p>
+                <a href="#" class="service-link" data-i18n="serviceWelfareLink">Get Help -></a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-graduation-cap service-icon"></i>
+                <h3 data-i18n="serviceEducationTitle">Education</h3>
+                <p data-i18n="serviceEducationDesc">Managing the Sharjah Indian School to provide quality education to our children.</p>
+                <a href="#" class="service-link" data-i18n="serviceEducationLink">Visit School -></a>
+            </div>
+        </div>    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2 data-i18n="aboutHeading">Serving Since 1979</h2>
+            <p data-i18n="aboutP1">The Sharjah Indian Association is the premier body representing the Indian expatriate community in the Emirate of Sharjah. Registered with the Ministry of Social Affairs, we are dedicated to the welfare, social, and cultural needs of Indians in the UAE.</p>
+            <p data-i18n="aboutP2">From operating the largest Indian school in the region to providing critical welfare support, the SIA stands as a pillar of support and a bridge between cultures.</p>
+            <div class="mission-copy" style="margin-top: 24px;">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 12px;">Our Mission and Vision</h3>
+                <p>The mission of IAS is to work for the social, educational and economic welfare and advancement of Indian Nationals in the United Arab Emirates. Indian Association Sharjah has been dedicating itself to the service of the community members providing them all possible assistance within our reach. We have sought the help, assistance and support of the Consulate General of India, Dubai for providing other services which the Association cannot directly provide. The Association tries its best to improve the social life of the community members by conducting various programmes in which they can directly involve and contribute.</p>
+                <p>Educational facility for the children of the community members is ensured through our institutions, Sharjah Indian School and Gulf Rose Nursery. Quality Education is being providing at the lowest fee rates through our institution. All modern amenities of learning are introduced. The best available faculty, modern infrastructure, best transport facility at very reasonable rates, well equipped labs, well set libraries, best nursery tools for our kids etc. are features of our institutions.</p>
+                <p> Providing more educational facilities and expanding the level of education has been planned already.  Association has already started to introduce University level education after plus 2 and the procedures are underway for starting an external centre of the University of Kerala under Indian Association Sharjah.  As part of the infrastructure development, a new site for a new school is being finalized and the preparatory steps have been taken to start the same.</p>
+
+            </div>
+        </div>
+        <div>
+            <!-- President / Management Message -->
+            <div class="leader-list">
+                <div class="president-card">
+                    <img src="/images/patronnew.jpg" alt="Our Patron" class="president-img">
+                    <div>
+                        <h3 style="color:var(--primary); margin-bottom:5px;" data-i18n="patronTitle">Our Patron</h3>
+                        <p class="quote" data-i18n="patronQuote">Mr. Ahmed Mohamad Hamad Al Midfa, the former Chairman of Sharjah Chamber of Commerce & Industry and Expo Centre Sharjah and Board Member of the UAE Federation of Chambers of Commerce and Industry. Held the position of Director of the Bureau of HH the Ruler of Sharjah, Director General of Sharjah Ports and Customs Department, and of Second Deputy former Chairman of the Federal National Council. He was Vice President of the Arab Federation of Leather Industry and former Chairman of the newly formed International Association of Exposition Management (IAEM) Arabian Gulf Chapter. Member in the Arab side of the Board of the Joint Portuguese-Arab Chamber of Commerce, the German-Arab Chamber of Commerce, the National US-Arab Chamber of Commerce, and the Italian-Arab Chamber of Commerce. Also First Vice President of the Board Member of German-Arab Chamber of Commerce. Member in the Egyptian-UAE, the Tunisian-UAE, and Oman-UAE Business Councils. And former Co-Chairman of the Joint UAE-Germany Business Council. Served as Board Member of the University of Sharjah 1999 and of the UAE General Authority of Youth & Sports Welfare. Businessman with private investment in Real Estate, Industry, Shares, and Advertising. We have all the blessings and support of our Hon’ble Patron Mr. Ahmed Mohamed Hamad Al Midfa for which we are deeply indebted and grateful. It is his patronage that gives us the necessary motivation and confidence to march ahead bravely along the path of service to the poor and the needy.</p>
+                        <button class="btn-read-more toggle-quote" type="button" data-i18n="btnReadMore">Read More</button>
+                    </div>
+                </div>
+                <div class="president-card">
+                    <img src="/images/Nisarka.jpg" alt="President" class="president-img">
+                    <div>
+                        <h3 style="color:var(--primary); margin-bottom:5px;" data-i18n="presidentTitle">President's Message</h3>
+                        <p class="quote" data-i18n="presidentQuote">Dear Esteemed Member, In the tapestry of our world, the threads of love and respect weave a fabric that can transform our existence into a truly beautiful and harmonious experience. The essence of a nation lies in the unity of its people, fostering happiness and confidence through mutual care. Within the vibrant tapestry of social and communal life, the Indian Association Sharjah stands as a beacon - a community that transcends geographical boundaries to create a home away from home. Here, unity flourishes through shared language, culture, tradition, and a collective appreciation that fosters respect for the individual rights and privileges of each member. Step into the Indian Association Sharjah, and you'll find more than a community; it's a sanctuary of friendship, a haven for shared sorrows, a refuge for assistance, and a source of solutions to life's challenges. It's a place where minds find peace and relaxation. What began as a simple gathering has evolved into an integral part of every community member's life, thanks to years of selfless service. Together, as a united force, the Indian Association Sharjah embodies the power of collective action. As a group, we can accomplish tasks deemed impossible for an individual and our association's history is a testament to the strength found in supporting one another. The core values of supporting, loving, and respecting each other, coupled with a commitment to serving the community, have become the guiding principles of our journey over the past 44 years. Simplicity beats at the core of our being, transparency forms the heart, modesty graces the face, and faithfulness courses through our veins. In studying the struggles of the less fortunate, we extend our hands to the most deserving, ensuring transparency and collaborative efforts in every endeavor. The Indian Association Sharjah doesn't just exist; it thrives. Our commitment extends beyond providing professional advice, guidance, and support. In partnership with the Consulate General of India, Dubai, we offer financial and other forms of assistance to those in need, to those facing financial hardships. Educational services are paramount, and the promotion of art, culture, and literature holds a place of priority. As the seasons change, I extend warm greetings to all of you and wish you the very best in all your endeavors. Here's to another year of unity, support, and shared success within our cherished Indian Association Sharjah. Warm Regards, NISSAR THALANGARA President</p>
+                        <button class="btn-read-more toggle-quote" type="button" data-i18n="btnReadMore">Read More</button>
+                    </div>
+                </div>
+                <div class="president-card">
+                    <img src="/images//Prakashetan.jpg" alt="General Secretary" class="president-img">
+                    <div>
+                        <h3 style="color:var(--primary); margin-bottom:5px;" data-i18n="gsTitle">General Secretary</h3>
+                        <p class="quote" data-i18n="gsQuote">"We focus on transparent governance and timely support so every member feels heard and represented."</p>
+                        <button class="btn-read-more toggle-quote" type="button" data-i18n="btnReadMore">Read More</button>
+                    </div>
+                </div>
+                <div class="president-card">
+                    <img src="/images/Treasurer.jpg" alt="Community Welfare" class="president-img">
+                    <div>
+                        <h3 style="color:var(--primary); margin-bottom:5px;" data-i18n="communityTitle">Community Welfare</h3>
+                        <p class="quote" data-i18n="communityQuote">"Our welfare team is on call for medical aid, legal guidance, and repatriation assistance when families need it most."</p>
+                        <button class="btn-read-more toggle-quote" type="button" data-i18n="btnReadMore">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section" id="news">
+        <div class="news-header">
+            <h2>Latest News</h2>
+        </div>
+        <div class="news-grid">
+            <article class="news-card">
+                <div class="news-media" style="background-image:url('images/01 health.png');"></div>
+                <div class="news-body">
+                    <h3>Community Health Camp</h3>
+                    <p>Free medical check-up and consultation for members and families in partnership with local hospitals.</p>
+                    <a class="news-cta" href="#">More</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-media" style="background-image:url('images/02 scholership.png');"></div>
+                <div class="news-body">
+                    <h3>Scholarship Announcements</h3>
+                    <p>Applications open for the 2025 education scholarship program supporting students in the UAE.</p>
+                    <a class="news-cta" href="#">More</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-media" style="background-image:url('images/03 national day.png');"></div>
+                <div class="news-body">
+                    <h3>UAE National Day</h3>
+                    <p>Cultural performances, flag hoisting, and community meet-up to celebrate UAE National Day.</p>
+                    <a class="news-cta" href="#">More</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <script>
+        const translations = {
+            en: {
+                topPhone: '+971 6 123 4567',
+                topEmail: 'info@iassharjah.com',
+                navHome: 'Home',
+                navAbout: 'About Us',
+                navCommittee: 'Committee',
+                navServices: 'Services',
+                navEducation: 'Education',
+                navEvents: 'Events',
+                navContact: 'Contact',
+                btnMembership: 'Membership',
+                heroTitle: 'A Home Away From Home',
+                heroSubtitle: 'Promoting Indian culture, welfare, and educational excellence in the UAE since 1979.',
+                heroJoin: 'Join Community',
+                heroHistory: 'Our History',
+                serviceCulturalTitle: 'Cultural Events',
+                serviceCulturalDesc: 'Auditorium bookings and event management for cultural programs.',
+                serviceCulturalLink: 'Book Venue ->',
+                servicePassportTitle: 'Consular Services',
+                servicePassportDesc: 'Consular assistance for passport renewals, attestations, and documentation.',
+                servicePassportLink: 'Learn More ->',
+                serviceWelfareTitle: 'Community Welfare',
+                serviceWelfareDesc: 'Providing support, medical assistance, and repatriation help to those in need.',
+                serviceWelfareLink: 'Get Help ->',
+                serviceEducationTitle: 'Education',
+                serviceEducationDesc: 'Managing the Sharjah Indian School to provide quality education to our children.',
+                serviceEducationLink: 'Visit School ->',
+                aboutHeading: 'Serving Since 1979',
+                aboutP1: 'The Sharjah Indian Association is the premier body representing the Indian expatriate community in the Emirate of Sharjah. Registered with the Ministry of Social Affairs, we are dedicated to the welfare, social, and cultural needs of Indians in the UAE.',
+                aboutP2: 'From operating the largest Indian school in the region to providing critical welfare support, the SIA stands as a pillar of support and a bridge between cultures.',
+                aboutBtn: 'Read More About Us',
+                patronTitle: 'Our Patron',
+                presidentTitle: 'President\'s Message',
+                gsTitle: 'General Secretary',
+                communityTitle: 'Community Welfare',
+                btnReadMore: 'Read More',
+                btnLess: 'Less'
+            },
+            hi: {
+                navHome: 'होम',
+                navAbout: 'हमारे बारे में',
+                navCommittee: 'समिति',
+                navServices: 'सेवाएँ',
+                navEducation: 'शिक्षा',
+                navEvents: 'कार्यक्रम',
+                navContact: 'संपर्क',
+                btnMembership: 'सदस्यता',
+                heroTitle: 'घर से दूर एक घर',
+                heroSubtitle: '1979 से यूएई में भारतीय संस्कृति, कल्याण और शिक्षा उत्कृष्टता को बढ़ावा देना।',
+                heroJoin: 'समुदाय से जुड़ें',
+                heroHistory: 'हमारा इतिहास',
+                serviceCulturalTitle: 'सांस्कृतिक कार्यक्रम',
+                serviceCulturalDesc: 'ऑडिटोरियम बुकिंग और सांस्कृतिक कार्यक्रम प्रबंधन।',
+                serviceCulturalLink: 'स्थल बुक करें ->',
+                servicePassportTitle: 'दूतावास / पासपोर्ट सेवाएँ',
+                servicePassportDesc: 'पासपोर्ट नवीनीकरण, सत्यापन और दस्तावेज़ीकरण के लिए सहायता।',
+                servicePassportLink: 'और जानें ->',
+                serviceWelfareTitle: 'सामुदायिक कल्याण',
+                serviceWelfareDesc: 'सहायता, चिकित्सा मदद, और प्रत्यावर्तन समर्थन।',
+                serviceWelfareLink: 'मदद पाएं ->',
+                serviceEducationTitle: 'शिक्षा',
+                serviceEducationDesc: 'शारजाह इंडियन स्कूल का प्रबंधन गुणवत्तापूर्ण शिक्षा के लिए।',
+                serviceEducationLink: 'स्कूल देखें ->',
+                aboutHeading: '1979 से सेवा में',
+                aboutP1: 'शारजाह इंडियन एसोसिएशन भारतीय प्रवासी समुदाय का प्रमुख संगठन है, जो कल्याण, सामाजिक और सांस्कृतिक जरूरतों पर केंद्रित है।',
+                aboutP2: 'हम सबसे बड़े भारतीय स्कूल को संचालित करते हैं और आवश्यक कल्याण सहायता प्रदान करते हैं।',
+                aboutBtn: 'हमारे बारे में पढ़ें',
+                patronTitle: 'संरक्षक',
+                presidentTitle: 'अध्यक्ष का संदेश',
+                gsTitle: 'महासचिव',
+                communityTitle: 'सामुदायिक कल्याण',
+                btnReadMore: 'और पढ़ें',
+                btnLess: 'कम देखें'
+            },
+            ml: {
+                navHome: 'ഹോം',
+                navAbout: 'ഞങ്ങളേക്കുറിച്ച്',
+                navCommittee: 'കമ്മിറ്റി',
+                navServices: 'സേവനങ്ങൾ',
+                navEducation: 'വിദ്യാഭ്യാസം',
+                navEvents: 'ഇവന്റ്‌സ്',
+                navContact: 'ബന്ധപ്പെടുക',
+                btnMembership: 'അംഗത്വം',
+                heroTitle: 'വീട്ടിൽ നിന്ന് അകലെയുള്ളൊരു വീട്',
+                heroSubtitle: '1979 മുതൽ യുഎഇയിൽ ഇന്ത്യൻ സംസ്കാരം, ക്ഷേമം, വിദ്യാഭ്യാസ മികവ് പ്രോത്സാഹിപ്പിക്കുന്നു.',
+                heroJoin: 'കമ്മ്യൂണിറ്റിയിൽ ചേരുക',
+                heroHistory: 'ഞങ്ങളുടെ ചരിത്രം',
+                serviceCulturalTitle: 'സാംസ്‌കാരിക പരിപാടികൾ',
+                serviceCulturalDesc: 'ഓഡിറ്റോറിയം ബുക്കിംഗ്‌, ഇവന്റ് മാനേജ്മെന്റ് സേവനങ്ങൾ.',
+                serviceCulturalLink: 'വേദി ബുക്ക് ചെയ്യുക ->',
+                servicePassportTitle: 'കോൺസുലർ / പാസ്പോർട്ട് സേവനങ്ങൾ',
+                servicePassportDesc: 'പാസ്പോർട്ട് പുതുക്കൽ, അറ്റസ്റ്റേഷൻ, രേഖാ പിന്തുണ.',
+                servicePassportLink: 'കൂടുതൽ അറിയുക ->',
+                serviceWelfareTitle: 'സമൂഹക്ഷേമം',
+                serviceWelfareDesc: 'സഹായം, മെഡിക്കൽ പിന്തുണ, റീപ്പാട്രിയേഷൻ സഹായം.',
+                serviceWelfareLink: 'സഹായം നേടുക ->',
+                serviceEducationTitle: 'വിദ്യാഭ്യാസം',
+                serviceEducationDesc: 'ഗുണമേൻമയുള്ള വിദ്യാഭ്യാസത്തിനായി ഷാർജ ഇന്ത്യൻ സ്‌കൂൾ നടത്തുന്നു.',
+                serviceEducationLink: 'സ്‌കൂൾ കാണുക ->',
+                aboutHeading: '1979 മുതൽ സേവനം',
+                aboutP1: 'ഷാർജ ഇന്ത്യൻ അസോസിയേഷൻ, ഷാർജയിലെ ഇന്ത്യൻ പ്രവാസി സമൂഹത്തിന്റെ ക്ഷേമത്തിനും സാംസ്‌കാരിക ആവശ്യങ്ങൾക്കും സമർപ്പിതമായ പ്രധാന സംഘടനയാണ്.',
+                aboutP2: 'പ്രദേശത്തെ ഏറ്റവും വലിയ ഇന്ത്യൻ സ്‌കൂൾ നടത്തുകയും ആവശ്യമായ ക്ഷേമ പിന്തുണ നൽകുകയും ചെയ്യുന്നു.',
+                aboutBtn: 'ഞങ്ങളേക്കുറിച്ച് കൂടുതൽ വായിക്കുക',
+                patronTitle: 'പാട്രൺ',
+                presidentTitle: 'പ്രസിഡന്റിന്റെ സന്ദേശം',
+                gsTitle: 'ജനറൽ സെക്രട്ടറി',
+                communityTitle: 'സമൂഹക്ഷേമം',
+                btnReadMore: 'കൂടുതൽ വായിക്കുക',
+                btnLess: 'കുറച്ച് കാണിക്കുക'
+            }
+        };
+
+        let currentLang = 'en';
+
+        function applyLanguage(lang) {
+            if (!translations[lang]) lang = 'en';
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                const key = el.dataset.i18n;
+                const val = (translations[lang] && translations[lang][key]) || (translations.en && translations.en[key]);
+                if (val) el.textContent = val;
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            document.querySelectorAll('.toggle-quote').forEach(function(btn) {
+                const quote = btn.previousElementSibling;
+                const expanded = quote && quote.classList.contains('expanded');
+                const label = expanded ? (translations[lang].btnLess || 'Less') : (translations[lang].btnReadMore || 'Read More');
+                btn.textContent = label;
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                applyLanguage(this.dataset.lang);
+            });
+        });
+
+        document.querySelectorAll('.toggle-quote').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                var quote = this.previousElementSibling;
+                if (!quote) return;
+                quote.classList.toggle('expanded');
+                this.textContent = quote.classList.contains('expanded') ? (translations[currentLang].btnLess || 'Less') : (translations[currentLang].btnReadMore || 'Read More');
+            });
+        });
+
+        applyLanguage('en');
+
+        // Simple hero background rotation every 3 seconds
+        (function() {
+            const hero = document.querySelector('.hero');
+            if (!hero) return;
+            const heroImages = [
+                'images/background.jpg',
+                'images/background 0.jpg'
+            ];
+            let idx = 0;
+            function rotate() {
+                idx = (idx + 1) % heroImages.length;
+                hero.style.backgroundImage = `url('${heroImages[idx]}')`;
+            }
+            setInterval(rotate, 3000);
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
+
