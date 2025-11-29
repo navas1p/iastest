@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharjah Indian Association</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #003366;
+            --accent: #FF9933;
+            --light-bg: #f9f9f9;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Language Specific Fonts */
+        body.lang-hi { font-family: 'Noto Sans Devanagari', sans-serif; }
+        body.lang-ml { font-family: 'Noto Sans Malayalam', sans-serif; }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .lang-select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-left: 20px;
+        }
+        .lang-select option { background: var(--primary); color: white; }
+
+        .top-right-group { display: flex; align-items: center; }
+        .top-social a { color: var(--white); margin-left: 15px; transition: color 0.3s; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 15px 5%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Default Logo Icon (You will replace this with <img> later) */
+        .logo i { color: var(--accent); font-size: 30px; }
+
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-donate {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        /* --- HERO SLIDER SECTION --- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-slide.active { opacity: 1; }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        body.lang-ml .hero-title { font-size: 2.8rem; line-height: 1.3; } 
+        body.lang-hi .hero-title { font-size: 3rem; }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+            font-weight: 500;
+        }
+
+        .btn-hero {
+            padding: 15px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin: 0 10px;
+            display: inline-block;
+        }
+        .btn-primary { background-color: var(--accent); color: var(--white); }
+        .btn-outline { border: 2px solid var(--white); color: var(--white); background: rgba(0,0,0,0.2); }
+
+        /* --- SERVICES STRIP --- */
+        .services-strip {
+            transform: translateY(-50px);
+            position: relative;
+            z-index: 10;
+            padding: 0 5%;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--primary);
+        }
+        .service-icon { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        .service-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; display: block; margin-top: 15px;}
+
+        /* --- FOOTER --- */
+        footer { background-color: #1a1a1a; color: #ccc; padding: 60px 5% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li a { color: #999; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .top-bar { flex-direction: column; gap: 10px; }
+            .hero-title { font-size: 2.2rem; }
+            .services-strip { transform: none; padding: 40px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-info">
+            <span><i class="fas fa-phone-alt"></i> +971 6 123 4567</span>
+            <span><i class="fas fa-envelope"></i> info@iassharjah.com</span>
+        </div>
+        <div class="top-right-group">
+            <div class="top-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <select class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="ml">മലയാളം (Malayalam)</option>
+            </select>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">
+            <i class="fas fa-hands-helping"></i> 
+            <div>
+                <span data-i18n="sia_title">Sharjah Indian</span><br>
+                <span data-i18n="association" style="font-size: 14px; font-weight: 400; color: #555;">Association</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="#" data-i18n="nav_home">Home</a>
+            <a href="#" data-i18n="nav_about">About Us</a>
+            <a href="#" data-i18n="nav_services">Services</a>
+            <a href="#" data-i18n="nav_education">Education</a>
+            <a href="#" data-i18n="nav_events">Events</a>
+            <a href="#" data-i18n="nav_contact">Contact</a>
+        </div>
+        <a href="#" class="btn-donate" data-i18n="nav_membership">Membership</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea904f18431?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=100');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1543599538-a6c4f6cc5c05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=100');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1427504746696-ea5abd71a309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=100');"></div>
+        </div>
+
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title" data-i18n="hero_title">A Home Away From Home</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">Promoting Indian culture, welfare, and educational excellence in the UAE since 1979.</p>
+            <div class="hero-btn-group">
+                <a href="#" class="btn-hero btn-primary" data-i18n="btn_join">Join Community</a>
+                <a href="#" class="btn-hero btn-outline" data-i18n="btn_history">Our History</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="services-strip">
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-passport service-icon"></i>
+                <h3 data-i18n="svc_passport">Passport Services</h3>
+                <p data-i18n="svc_passport_desc">Consular assistance for passport renewals, attestations, and documentation.</p>
+                <a href="#" class="service-link" data-i18n="link_learn">Learn More &rarr;</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-hand-holding-heart service-icon"></i>
+                <h3 data-i18n="svc_welfare">Community Welfare</h3>
+                <p data-i18n="svc_welfare_desc">Providing support, medical assistance, and repatriation help to those in need.</p>
+                <a href="#" class="service-link" data-i18n="link_help">Get Help &rarr;</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-graduation-cap service-icon"></i>
+                <h3 data-i18n="svc_edu">Education</h3>
+                <p data-i18n="svc_edu_desc">Managing the Sharjah Indian School to provide quality education to our children.</p>
+                <a href="#" class="service-link" data-i18n="link_visit">Visit School &rarr;</a>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-landmark service-icon"></i>
+                <h3 data-i18n="svc_cultural">Cultural Events</h3>
+                <p data-i18n="svc_cultural_desc">Auditorium bookings and event management for cultural programs.</p>
+                <a href="#" class="service-link" data-i18n="link_book">Book Venue &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 data-i18n="footer_about">About SIA</h4>
+                <p data-i18n="footer_desc">Sharjah Indian Association is a non-profit organization registered with the Government of Sharjah, dedicated to the social and cultural welfare of the Indian community.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_links">Quick Links</h4>
+                <ul>
+                    <li><a href="#" data-i18n="nav_services">Services</a></li>
+                    <li><a href="#" data-i18n="nav_membership">Membership Form</a></li>
+                    <li><a href="#" data-i18n="nav_contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_contact">Contact Us</h4>
+                <p>Near Gold Center, Sharjah, UAE</p>
+                <p>+971 6 566 0000</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* --- 1. LANGUAGE SCRIPT --- */
+        const translations = {
+            en: {
+                sia_title: "Sharjah Indian",
+                association: "Association",
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_education: "Education",
+                nav_events: "Events",
+                nav_contact: "Contact",
+                nav_membership: "Membership",
+                hero_title: "A Home Away From Home",
+                hero_subtitle: "Promoting Indian culture, welfare, and educational excellence in the UAE since 1979.",
+                btn_join: "Join Community",
+                btn_history: "Our History",
+                svc_passport: "Passport Services",
+                svc_passport_desc: "Consular assistance for passport renewals, attestations, and documentation.",
+                svc_welfare: "Community Welfare",
+                svc_welfare_desc: "Providing support, medical assistance, and repatriation help to those in need.",
+                svc_edu: "Education",
+                svc_edu_desc: "Managing the Sharjah Indian School to provide quality education to our children.",
+                svc_cultural: "Cultural Events",
+                svc_cultural_desc: "Auditorium bookings and event management for cultural programs.",
+                link_learn: "Learn More →",
+                link_help: "Get Help →",
+                link_visit: "Visit School →",
+                link_book: "Book Venue →",
+                footer_about: "About SIA",
+                footer_desc: "Sharjah Indian Association is a non-profit organization registered with the Government of Sharjah, dedicated to the social and cultural welfare of the Indian community.",
+                footer_links: "Quick Links",
+                footer_contact: "Contact Us"
+            },
+            hi: {
+                sia_title: "शारजाह इंडियन",
+                association: "एसोसिएशन",
+                nav_home: "होम",
+                nav_about: "हमारे बारे में",
+                nav_services: "सेवाएं",
+                nav_education: "शिक्षा",
+                nav_events: "कार्यक्रम",
+                nav_contact: "संपर्क",
+                nav_membership: "सदस्यता",
+                hero_title: "घर से दूर एक घर",
+                hero_subtitle: "1979 से संयुक्त अरब अमीरात में भारतीय संस्कृति, कल्याण और शैक्षिक उत्कृष्टता को बढ़ावा देना।",
+                btn_join: "समुदाय से जुड़ें",
+                btn_history: "हमारा इतिहास",
+                svc_passport: "पासपोर्ट सेवाएं",
+                svc_passport_desc: "पासपोर्ट नवीनीकरण, सत्यापन और दस्तावेज़ीकरण के लिए कांसुलर सहायता।",
+                svc_welfare: "सामुदायिक कल्याण",
+                svc_welfare_desc: "जरूरतमंदों को सहायता, चिकित्सा सहायता और स्वदेश वापसी में मदद प्रदान करना।",
+                svc_edu: "शिक्षा",
+                svc_edu_desc: "हमारे बच्चों को गुणवत्तापूर्ण शिक्षा प्रदान करने के लिए शारजाह इंडियन स्कूल का प्रबंधन करना।",
+                svc_cultural: "सांस्कृतिक कार्यक्रम",
+                svc_cultural_desc: "सांस्कृतिक कार्यक्रमों के लिए ऑडिटोरियम बुकिंग और कार्यक्रम प्रबंधन।",
+                link_learn: "और जानें →",
+                link_help: "मदद प्राप्त करें →",
+                link_visit: "स्कूल जाएँ →",
+                link_book: "वेन्यू बुक करें →",
+                footer_about: "एसआईए के बारे में",
+                footer_desc: "शारजाह इंडियन एसोसिएशन शारजाह सरकार के साथ पंजीकृत एक गैर-लाभकारी संगठन है, जो भारतीय समुदाय के सामाजिक और सांस्कृतिक कल्याण के लिए समर्पित है।",
+                footer_links: "त्वरित लिंक",
+                footer_contact: "संपर्क करें"
+            },
+            ml: {
+                sia_title: "ഷാർജ ഇന്ത്യൻ",
+                association: "അസോസിയേഷൻ",
+                nav_home: "ഹോം",
+                nav_about: "ഞങ്ങളെക്കുറിച്ച്",
+                nav_services: "സേവനങ്ങൾ",
+                nav_education: "വിദ്യാഭ്യാസം",
+                nav_events: "പരിപാടികൾ",
+                nav_contact: "ബന്ധപ്പെടുക",
+                nav_membership: "അംഗത്വം",
+                hero_title: "വീടിന് അകലെ മറ്റൊരു വീട്",
+                hero_subtitle: "1979 മുതൽ യുഎഇയിൽ ഇന്ത്യൻ സംസ്കാരം, ക്ഷേമം, വിദ്യാഭ്യാസ മികവ് എന്നിവ പ്രോത്സാഹിപ്പിക്കുന്നു.",
+                btn_join: "കമ്മ്യൂണിറ്റിയിൽ ചേരുക",
+                btn_history: "ചരിത്രം",
+                svc_passport: "പാസ്‌പോർട്ട് സേവനങ്ങൾ",
+                svc_passport_desc: "പാസ്‌പോർട്ട് പുതുക്കൽ, സാക്ഷ്യപ്പെടുത്തൽ, മറ്റ് രേഖകൾ എന്നിവയ്ക്കുള്ള കോൺസുലർ സഹായം.",
+                svc_welfare: "കമ്മ്യൂണിറ്റി ക്ഷേമം",
+                svc_welfare_desc: "ആവശ്യക്കാർക്ക് സഹായം, ചികിത്സാ സഹായം, നാട്ടിലേക്ക് മടങ്ങാനുള്ള സഹായം എന്നിവ നൽകുന്നു.",
+                svc_edu: "വിദ്യാഭ്യാസം",
+                svc_edu_desc: "നമ്മുടെ കുട്ടികൾക്ക് ഗുണനിലവാരമുള്ള വിദ്യാഭ്യാസം നൽകുന്നതിനായി ഷാർജ ഇന്ത്യൻ സ്കൂൾ നിയന്ത്രിക്കുന്നു.",
+                svc_cultural: "സാംസ്കാരിക പരിപാടികൾ",
+                svc_cultural_desc: "സാംസ്കാരിക പരിപാടികൾക്കുള്ള ഓഡിറ്റോറിയം ബുക്കിംഗും ഇവന്റ് മാനേജ്മെന്റും.",
+                link_learn: "കൂടുതൽ അറിയുക →",
+                link_help: "സഹായം തേടുക →",
+                link_visit: "സ്കൂൾ സന്ദർശിക്കുക →",
+                link_book: "വേദി ബുക്ക് ചെയ്യുക →",
+                footer_about: "SIA-യെക്കുറിച്ച്",
+                footer_desc: "ഷാർജ ഗവൺമെന്റിൽ രജിസ്റ്റർ ചെയ്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന സംഘടനയാണ് ഷാർജ ഇന്ത്യൻ അസോസിയേഷൻ.",
+                footer_links: "ലിങ്കുകൾ",
+                footer_contact: "ബന്ധപ്പെടുക"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update Text content
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update Body Class for Fonts
+            document.body.className = ''; 
+            if (lang === 'hi') {
+                document.body.classList.add('lang-hi');
+            } else if (lang === 'ml') {
+                document.body.classList.add('lang-ml');
+            }
+        }
+
+        /* --- 2. IMAGE SLIDER SCRIPT --- */
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        const slideInterval = 5000; // 5 seconds per slide
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Start Auto Slider
+        setInterval(nextSlide, slideInterval);
+    </script>
+
+</body>
+</html>
