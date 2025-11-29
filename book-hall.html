@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharjah Indian Association | Book a Hall</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --accent: #FF9933;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --light-bg: #f5f7fb;
+            --white: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            line-height: 1.6;
+        }
+        nav {
+            background: var(--white);
+            padding: 15px 5%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo img { height: 60px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .lang-switch { display: flex; gap: 8px; align-items: center; }
+        .lang-btn {
+            border: 1px solid #d9d9d9;
+            background: #fff;
+            color: var(--text-dark);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .lang-btn.active { border-color: var(--primary); color: var(--primary); font-weight: 700; }
+
+        .hero {
+            background: url('images/background.jpg') no-repeat center center/cover;
+            color: var(--white);
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 12px; }
+        .hero p { max-width: 760px; margin: 0 auto; color: #e8e8e8; }
+
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 40px 5% 80px;
+        }
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+            padding: 24px;
+        }
+        .card h2 { color: var(--primary); margin-bottom: 16px; }
+        .card p { color: var(--text-light); margin-bottom: 12px; }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        label { font-weight: 600; color: var(--text-dark); font-size: 14px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 14px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            background: #fff;
+        }
+        textarea { min-height: 110px; resize: vertical; }
+
+        input[type="date"] {
+            font-size: 16px;
+            padding: 14px 14px;
+        }
+
+        .full-width { grid-column: 1 / -1; }
+        .btn {
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 22px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            justify-self: start;
+            box-shadow: 0 8px 16px rgba(255,153,51,0.25);
+        }
+        .btn:hover { background: #e68a00; }
+
+        .steps {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .steps li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .steps i { color: var(--accent); margin-top: 3px; }
+
+        .calendar-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+        .calendar-modal.active { display: flex; }
+        .calendar-box {
+            width: min(900px, 100%);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        .calendar-header {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+        .cal-nav-btn {
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: #e2e2e2;
+        }
+        .calendar-grid .cell {
+            background: #fff;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        .calendar-grid .past {
+            background: #f3f3f3;
+            color: #bcbcbc;
+            cursor: not-allowed;
+        }
+        .calendar-grid .booked {
+            background: #ffe8d1;
+            color: #b35a00;
+            cursor: not-allowed;
+        }
+        .calendar-grid .booked span {
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .calendar-legend {
+            display: flex;
+            gap: 16px;
+            padding: 12px 16px 16px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .dot-booked { background: #ff9933; }
+        .dot-available { background: #0aa15c; }
+
+        @media (max-width: 900px) {
+            .content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="/images/logo .jpg" alt="SIA Logo">
+        </a>
+        <div class="nav-links">
+            <a href="index.html" data-i18n="navHome">Home</a>
+            <a href="services.html" data-i18n="navServices">Services</a>
+            <a href="cultural-events.html" data-i18n="navCultural">Cultural Events</a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="ml">മലയാളം</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 data-i18n="heroTitle">Book a Hall</h1>
+        <p data-i18n="heroSubtitle">Submit your booking request with event details and required documents. Our team will confirm availability and next steps.</p>
+    </section>
+
+    <div class="content">
+        <div class="card">
+            <h2 data-i18n="bookingFormTitle">Booking Form</h2>
+            <form>
+                <div class="full-width">
+                    <label for="hall" data-i18n="labelHall">Select Hall</label>
+                    <select id="hall" name="hall">
+                        <option value="Community Hall" data-i18n="optionCommunity">Community Hall</option>
+                        <option value="Conference Hall" data-i18n="optionConference">Conference Hall</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="name" data-i18n="labelName">Full Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your full name">
+                </div>
+                <div>
+                    <label for="email" data-i18n="labelEmail">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label for="phone" data-i18n="labelPhone">Phone</label>
+                    <input id="phone" name="phone" type="tel" placeholder="+971 5x xxx xxxx">
+                </div>
+                <div>
+                    <label for="date" data-i18n="labelDate">Event Date</label>
+                    <input id="date" name="date" type="date">
+                </div>
+                <div>
+                    <label for="time" data-i18n="labelTime">Event Time</label>
+                    <input id="time" name="time" type="time">
+                </div>
+                <div>
+                    <label for="attendees" data-i18n="labelAttendees">Expected Attendees</label>
+                    <input id="attendees" name="attendees" type="number" min="1" placeholder="e.g., 120">
+                </div>
+                <div>
+                    <label for="duration" data-i18n="labelDuration">Duration (hours)</label>
+                    <input id="duration" name="duration" type="number" min="1" max="24" placeholder="e.g., 4">
+                </div>
+                <div class="full-width">
+                    <label for="purpose" data-i18n="labelPurpose">Event Purpose</label>
+                    <textarea id="purpose" name="purpose" placeholder="Describe the program, special requirements, staging, catering, AV needs, etc."></textarea>
+                </div>
+                <div>
+                    <label for="emiratesId" data-i18n="labelEmiratesId">Emirates ID (PDF/JPG/PNG)</label>
+                    <input id="emiratesId" name="emiratesId" type="file" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                <div>
+                    <label for="passport" data-i18n="labelPassport">Passport (PDF/JPG/PNG)</label>
+                    <input id="passport" name="passport" type="file" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                <div class="full-width">
+                    <label for="notes" data-i18n="labelNotes">Additional Notes</label>
+                    <textarea id="notes" name="notes" placeholder="Any other information to help us prepare."></textarea>
+                </div>
+                <button class="btn" type="submit" data-i18n="submitBtn">Submit Booking</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 data-i18n="stepsTitle">Booking Steps</h2>
+            <p data-i18n="stepsIntro">Follow these steps so we can confirm your reservation quickly:</p>
+            <ul class="steps">
+                <li><i class="fas fa-check-circle"></i><span data-i18n="step1">Choose the hall and fill in your event date, time, and expected attendees.</span></li>
+                <li><i class="fas fa-check-circle"></i><span data-i18n="step2">Describe your event needs (stage, seating style, AV, catering, parking).</span></li>
+                <li><i class="fas fa-check-circle"></i><span data-i18n="step3">Upload Emirates ID and Passport copies for verification.</span></li>
+                <li><i class="fas fa-check-circle"></i><span data-i18n="step4">Submit the request; our team will confirm availability and fees.</span></li>
+                <li><i class="fas fa-check-circle"></i><span data-i18n="step5">Receive confirmation, make payment, and collect the booking pass.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="calendar-modal" id="calendar-modal">
+        <div class="calendar-box">
+            <div class="calendar-header">
+                <button class="cal-nav-btn" id="cal-prev">&#8592;</button>
+                <span id="calendar-month"></span>
+                <button class="cal-nav-btn" id="cal-next">&#8594;</button>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+            <div class="calendar-legend">
+                <span><span class="legend-dot dot-booked"></span><span data-i18n="legendBooked">Booked</span></span>
+                <span><span class="legend-dot dot-available"></span><span data-i18n="legendAvailable">Available</span></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                navHome: 'Home',
+                navServices: 'Services',
+                navCultural: 'Cultural Events',
+                heroTitle: 'Book a Hall',
+                heroSubtitle: 'Submit your booking request with event details and required documents. Our team will confirm availability and next steps.',
+                bookingFormTitle: 'Booking Form',
+                labelHall: 'Select Hall',
+                optionCommunity: 'Community Hall',
+                optionConference: 'Conference Hall',
+                labelName: 'Full Name',
+                labelEmail: 'Email',
+                labelPhone: 'Phone',
+                labelDate: 'Event Date',
+                labelTime: 'Event Time',
+                labelAttendees: 'Expected Attendees',
+                labelDuration: 'Duration (hours)',
+                labelPurpose: 'Event Purpose',
+                labelEmiratesId: 'Emirates ID (PDF/JPG/PNG)',
+                labelPassport: 'Passport (PDF/JPG/PNG)',
+                labelNotes: 'Additional Notes',
+                submitBtn: 'Submit Booking',
+                availability: 'Availability',
+                legendBooked: 'Booked',
+                legendAvailable: 'Available',
+                stepsTitle: 'Booking Steps',
+                stepsIntro: 'Follow these steps so we can confirm your reservation quickly:',
+                step1: 'Choose the hall and fill in your event date, time, and expected attendees.',
+                step2: 'Describe your event needs (stage, seating style, AV, catering, parking).',
+                step3: 'Upload Emirates ID and Passport copies for verification.',
+                step4: 'Submit the request; our team will confirm availability and fees.',
+                step5: 'Receive confirmation, make payment, and collect the booking pass.'
+            },
+            hi: {
+                navHome: 'होम',
+                navServices: 'सेवाएँ',
+                navCultural: 'सांस्कृतिक कार्यक्रम',
+                heroTitle: 'हॉल बुक करें',
+                heroSubtitle: 'कार्यक्रम विवरण और आवश्यक दस्तावेज़ के साथ बुकिंग अनुरोध भेजें। हमारी टीम उपलब्धता की पुष्टि करेगी।',
+                bookingFormTitle: 'बुकिंग फ़ॉर्म',
+                labelHall: 'हॉल चुनें',
+                optionCommunity: 'कम्युनिटी हॉल',
+                optionConference: 'कॉन्फ़्रेंस हॉल',
+                labelName: 'पूरा नाम',
+                labelEmail: 'ईमेल',
+                labelPhone: 'फ़ोन',
+                labelDate: 'कार्यक्रम तिथि',
+                labelTime: 'समय',
+                labelAttendees: 'अपेक्षित अतिथि',
+                labelDuration: 'अवधि (घंटे)',
+                labelPurpose: 'कार्यक्रम का उद्देश्य',
+                labelEmiratesId: 'एमिरेट्स आईडी (PDF/JPG/PNG)',
+                labelPassport: 'पासपोर्ट (PDF/JPG/PNG)',
+                labelNotes: 'अतिरिक्त नोट्स',
+                submitBtn: 'बुकिंग भेजें',
+                availability: 'उपलब्धता',
+                legendBooked: 'बुक',
+                legendAvailable: 'उपलब्ध',
+                stepsTitle: 'बुकिंग प्रक्रिया',
+                stepsIntro: 'तेज़ पुष्टि के लिए ये कदम अपनाएँ:',
+                step1: 'हॉल चुनें और तिथि, समय, अनुमानित अतिथि भरें।',
+                step2: 'मंच, बैठने की शैली, एवी, कैटरिंग, पार्किंग जैसी ज़रूरतें लिखें।',
+                step3: 'सत्यापन के लिए एमिरेट्स आईडी और पासपोर्ट अपलोड करें।',
+                step4: 'अनुरोध जमा करें; टीम उपलब्धता और शुल्क बताएगी।',
+                step5: 'पुष्टि प्राप्त करें, भुगतान करें और बुकिंग पास लें।'
+            },
+            ml: {
+                navHome: 'ഹോം',
+                navServices: 'സേവനങ്ങൾ',
+                navCultural: 'സാംസ്‌കാരിക ഇവന്റ്‌സ്',
+                heroTitle: 'ഹാൾ ബുക്ക് ചെയ്യുക',
+                heroSubtitle: 'ഇവന്റ് വിവരങ്ങളും ആവശ്യമായ രേഖകളും സഹിതം ബുക്കിംഗ് അപേക്ഷ അയക്കുക. ലഭ്യത ഞങ്ങൾ സ്ഥിരീകരിക്കും.',
+                bookingFormTitle: 'ബുക്കിംഗ് ഫോം',
+                labelHall: 'ഹാൾ തിരഞ്ഞെടുക്കുക',
+                optionCommunity: 'കമ്മ്യൂണിറ്റി ഹാൾ',
+                optionConference: 'കോൺഫറൻസ് ഹാൾ',
+                labelName: 'പൂർണ്ണ പേര്',
+                labelEmail: 'ഇമെയിൽ',
+                labelPhone: 'ഫോൺ',
+                labelDate: 'ഇവന്റ് തീയതി',
+                labelTime: 'സമയം',
+                labelAttendees: 'പ്രതീക്ഷിക്കുന്ന പങ്കെടുക്കുന്നവർ',
+                labelDuration: 'ദൈർഘ്യം (മണിക്കൂർ)',
+                labelPurpose: 'ഇവന്റിന്റെ ഉദ്ദേശ്യം',
+                labelEmiratesId: 'എമിറേറ്റ്സ് ഐഡി (PDF/JPG/PNG)',
+                labelPassport: 'പാസ്‌പോർട്ട് (PDF/JPG/PNG)',
+                labelNotes: 'കൂടുതൽ കുറിപ്പുകൾ',
+                submitBtn: 'ബുക്കിംഗ് സമർപ്പിക്കുക',
+                availability: 'ലഭ്യത',
+                legendBooked: 'ബുക്ക് ചെയ്തു',
+                legendAvailable: 'ലഭ്യം',
+                stepsTitle: 'ബുക്കിംഗ് ഘട്ടങ്ങൾ',
+                stepsIntro: 'വേഗത്തിൽ സ്ഥിരീകരിക്കാൻ ഈ ഘട്ടങ്ങൾ പിന്തുടരുക:',
+                step1: 'ഹാൾ തിരഞ്ഞെടുക്കി തീയതി, സമയം, പങ്കാളികൾ ചേർക്കുക.',
+                step2: 'സ്റ്റേജ്, ഇരിപ്പിടം, AV, കാറ്ററിംഗ്, പാർക്കിംഗ് ആവശ്യങ്ങൾ വിവരിക്കുക.',
+                step3: 'സാധൂകരണത്തിനായി എമിറേറ്റ്സ് ഐഡി, പാസ്‌പോർട്ട് അപ്‌ലോഡ് ചെയ്യുക.',
+                step4: 'അപേക്ഷ സമർപ്പിക്കുക; ടീം ലഭ്യതയും ഫീസും അറിയിക്കും.',
+                step5: 'സ്ഥിരീകരണം വാങ്ങി, പണമടച്ച് ബുക്കിംഗ് പാസ് സ്വീകരിക്കുക.'
+            }
+        };
+
+        let currentLang = 'en';
+        function applyLang(lang) {
+            if (!translations[lang]) lang = 'en';
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                const key = el.dataset.i18n;
+                const val = (translations[lang] && translations[lang][key]) || (translations.en && translations.en[key]);
+                if (val) el.textContent = val;
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { applyLang(this.dataset.lang); });
+        });
+
+        // Preselect hall based on query parameter (?hall=Community%20Hall etc.)
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const hallParam = params.get('hall');
+            const hallSelect = document.getElementById('hall');
+            if (hallParam && hallSelect) {
+                Array.from(hallSelect.options).forEach(opt => {
+                    if (opt.value.toLowerCase() === hallParam.toLowerCase()) {
+                        hallSelect.value = opt.value;
+                    }
+                });
+            }
+        })();
+
+        // Disable past dates and block booked dates on the picker
+        (function() {
+            const dateInput = document.getElementById('date');
+            if (!dateInput) return;
+            const today = new Date();
+            const pad = n => String(n).padStart(2, '0');
+            const todayStr = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+            dateInput.min = todayStr;
+
+            const bookedDates = [
+                `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate()+2)}`,
+                `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate()+5)}`,
+                `${today.getFullYear()}-${pad(today.getMonth()+2)}-05`
+            ];
+
+            const modal = document.getElementById('calendar-modal');
+            const grid = document.getElementById('calendar-grid');
+            const monthLabel = document.getElementById('calendar-month');
+            const prevBtn = document.getElementById('cal-prev');
+            const nextBtn = document.getElementById('cal-next');
+            let currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+            function renderCalendar(baseDate) {
+                grid.innerHTML = '';
+                const year = baseDate.getFullYear();
+                const month = baseDate.getMonth();
+                const firstDay = new Date(year, month, 1);
+                const startDay = firstDay.getDay(); // 0=Sun
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                monthLabel.textContent = baseDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+                // leading blanks
+                for (let i = 0; i < startDay; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell past';
+                    grid.appendChild(cell);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    const dateStr = `${year}-${pad(month + 1)}-${pad(day)}`;
+                    const isPast = new Date(dateStr) < new Date(todayStr);
+                    const isBooked = bookedDates.includes(dateStr);
+                    if (isPast) cell.classList.add('past');
+                    if (isBooked) {
+                        cell.classList.add('booked');
+                        const label = document.createElement('span');
+                        label.textContent = 'Booked';
+                        cell.appendChild(label);
+                    } else {
+                        cell.textContent = day;
+                    }
+                    if (!isPast && !isBooked) {
+                        cell.addEventListener('click', function() {
+                            dateInput.value = dateStr;
+                            modal.classList.remove('active');
+                        });
+                    }
+                    grid.appendChild(cell);
+                }
+            }
+
+            dateInput.addEventListener('focus', function() {
+                modal.classList.add('active');
+                renderCalendar(currentMonth);
+            });
+            dateInput.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.classList.add('active');
+                renderCalendar(currentMonth);
+            });
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+            prevBtn.addEventListener('click', function() {
+                currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+                renderCalendar(currentMonth);
+            });
+            nextBtn.addEventListener('click', function() {
+                currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+                renderCalendar(currentMonth);
+            });
+        })();
+
+        applyLang('en');
+    </script>
+</body>
+</html>

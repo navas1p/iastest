@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharjah Indian Association | Cultural Events</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --accent: #FF9933;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: var(--white);
+            padding: 15px 5%;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo img { height: 60px; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .lang-switch { display: flex; gap: 8px; align-items: center; }
+        .lang-btn {
+            border: 1px solid #d9d9d9;
+            background: #fff;
+            color: var(--text-dark);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .lang-btn.active { border-color: var(--primary); color: var(--primary); font-weight: 700; }
+
+        .hero {
+            background: url('images/background.jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 5%;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+        .hero p { max-width: 720px; margin: 0 auto; color: #e8e8e8; }
+
+        .cards {
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+        .card-body h3 { color: var(--primary); }
+        .card-body p { color: var(--text-light); }
+        .card-body .btn { align-self: flex-start; background: var(--accent); color: var(--white); padding: 10px 20px; border-radius: 40px; text-decoration: none; font-weight: 600; }
+        .card-body .btn:hover { background: #e68a00; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 70px 5%; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="/images/logo .jpg" alt="SIA Logo">
+        </a>
+        <div class="nav-links">
+            <a href="index.html" data-i18n="navHome">Home</a>
+            <a href="services.html" data-i18n="navServices">Services</a>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="ml">മലയാളം</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 data-i18n="heroTitle">Cultural Events</h1>
+        <p data-i18n="heroSubtitle">Explore our venues designed for celebrations, conferences, and community gatherings.</p>
+    </section>
+
+    <section class="cards">
+        <div class="card">
+            <img src="/images/community hall.jpg" alt="Community Hall">
+            <div class="card-body">
+                <h3 data-i18n="communityHallTitle">Community Hall</h3>
+                <p data-i18n="communityHallDesc">Spacious hall ideal for cultural programs, family functions, and community meetups with full AV support.</p>
+                <a class="btn" href="book-hall.html?hall=Community Hall" data-i18n="bookNow">Book Now</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/images/conference hall.jpg" alt="Conference Hall">
+            <div class="card-body">
+                <h3 data-i18n="conferenceHallTitle">Conference Hall</h3>
+                <p data-i18n="conferenceHallDesc">Modern conference space equipped for seminars, workshops, and corporate sessions with seating flexibility.</p>
+                <a class="btn" href="book-hall.html?hall=Conference Hall" data-i18n="bookNow">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const translations = {
+            en: {
+                navHome: 'Home',
+                navServices: 'Services',
+                heroTitle: 'Cultural Events',
+                heroSubtitle: 'Explore our venues designed for celebrations, conferences, and community gatherings.',
+                communityHallTitle: 'Community Hall',
+                communityHallDesc: 'Spacious hall ideal for cultural programs, family functions, and community meetups with full AV support.',
+                conferenceHallTitle: 'Conference Hall',
+                conferenceHallDesc: 'Modern conference space equipped for seminars, workshops, and corporate sessions with seating flexibility.',
+                bookNow: 'Book Now'
+            },
+            hi: {
+                navHome: 'होम',
+                navServices: 'सेवाएँ',
+                heroTitle: 'सांस्कृतिक कार्यक्रम',
+                heroSubtitle: 'उत्सवों, सम्मेलनों और सामुदायिक कार्यक्रमों के लिए हमारे स्थलों की जानकारी लें।',
+                communityHallTitle: 'कम्युनिटी हॉल',
+                communityHallDesc: 'सांस्कृतिक कार्यक्रम, पारिवारिक समारोह और सामुदायिक बैठकें आयोजित करने के लिए विशाल हॉल, पूर्ण एवी समर्थन के साथ।',
+                conferenceHallTitle: 'कॉन्फ़्रेंस हॉल',
+                conferenceHallDesc: 'सेमिनार, कार्यशाला और कॉरपोरेट सत्रों के लिए आधुनिक हॉल, लचीली बैठक व्यवस्था के साथ।',
+                bookNow: 'बुक करें'
+            },
+            ml: {
+                navHome: 'ഹോം',
+                navServices: 'സേവനങ്ങൾ',
+                heroTitle: 'സാംസ്‌കാരിക പരിപാടികൾ',
+                heroSubtitle: 'ആഘോഷങ്ങൾക്കും സമ്മേളനങ്ങൾക്കും കമ്മ്യൂണിറ്റി ഇവന്റുകൾക്കും അനുയോജ്യമായ വേദികൾ നോക്കൂ.',
+                communityHallTitle: 'കമ്മ്യൂണിറ്റി ഹാൾ',
+                communityHallDesc: 'സാംസ്‌കാരിക പരിപാടികൾക്കും കുടുംബ, കമ്മ്യൂണിറ്റി യോഗങ്ങൾക്കും അനുയോജ്യമായ വിശാല ഹാൾ; പൂർണ്ണ AV സൗകര്യത്തോടെ.',
+                conferenceHallTitle: 'കോൺഫറൻസ് ഹാൾ',
+                conferenceHallDesc: 'സെമിനാർ, വർക്ക്‌ഷോപ്പ്, കോർപ്പറേറ്റ് സെഷനുകൾക്കുള്ള ആധുനിക ഹാൾ, ഇഷ്ടാനുസൃത ഇരിപ്പിടങ്ങളോടുകൂടി.',
+                bookNow: 'ബുക്ക് ചെയ്യുക'
+            }
+        };
+
+        let currentLang = 'en';
+        function applyLang(lang) {
+            if (!translations[lang]) lang = 'en';
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                const key = el.dataset.i18n;
+                const val = (translations[lang] && translations[lang][key]) || (translations.en && translations.en[key]);
+                if (val) el.textContent = val;
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() { applyLang(this.dataset.lang); });
+        });
+        applyLang('en');
+    </script>
+</body>
+</html>
