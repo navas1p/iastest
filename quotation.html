@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Website Development Proposal – Indian Association Sharjah</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin:0;
+            padding:0;
+            background:#f5f7fb;
+            color:#1f2933;
+        }
+        .wrapper{
+            max-width:900px;
+            margin:30px auto 60px auto;
+            background:#ffffff;
+            padding:40px 40px 60px 40px;
+            box-shadow:0 8px 25px rgba(15,23,42,0.12);
+            border-radius:8px;
+        }
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            border-bottom:3px solid #0b6fb8;
+            padding-bottom:20px;
+            margin-bottom:25px;
+        }
+        .header-left{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+        .header-left img{
+            height:60px;
+        }
+        .company-name{
+            font-size:22px;
+            font-weight:bold;
+            color:#0b4f8c;
+        }
+        .proposal-title{
+            font-size:22px;
+            font-weight:bold;
+            color:#111827;
+            text-align:right;
+        }
+        h1,h2,h3{
+            color:#0b4f8c;
+            margin-top:25px;
+        }
+        h1{
+            font-size:24px;
+        }
+        h2{
+            font-size:20px;
+        }
+        h3{
+            font-size:17px;
+        }
+        p{
+            line-height:1.6;
+            margin:8px 0;
+        }
+        ul{
+            margin:6px 0 12px 20px;
+        }
+        .two-col{
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+        }
+        .two-col > div{
+            flex:1 1 260px;
+        }
+        .info-table{
+            width:100%;
+            border-collapse:collapse;
+            margin:10px 0 20px 0;
+        }
+        .info-table th,
+        .info-table td{
+            padding:8px 10px;
+            border:1px solid #d1d5db;
+            font-size:14px;
+        }
+        .info-table th{
+            background:#0b6fb8;
+            color:#ffffff;
+            text-align:left;
+        }
+        .highlight-box{
+            background:#eef5ff;
+            border-left:4px solid #0b6fb8;
+            padding:12px 16px;
+            margin:18px 0;
+            border-radius:4px;
+            font-size:14px;
+        }
+        .price-box{
+            background:#041727;
+            color:#f9fafb;
+            padding:18px 20px;
+            border-radius:6px;
+            margin:20px 0;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+        .price-box strong{
+            font-size:20px;
+        }
+        .tag{
+            display:inline-block;
+            padding:4px 10px;
+            border-radius:999px;
+            background:#10b981;
+            color:#022c22;
+            font-size:12px;
+            font-weight:bold;
+        }
+        .timeline-list li{
+            margin-bottom:4px;
+        }
+        .signature-block{
+            margin-top:35px;
+        }
+        .signature-block div{
+            margin-top:30px;
+        }
+        .signature-line{
+            border-top:1px solid #9ca3af;
+            width:260px;
+            margin-top:40px;
+        }
+        .download-container{
+            text-align:center;
+            margin:25px auto;
+        }
+        .download-btn{
+            background:#0b6fb8;
+            color:#ffffff;
+            border:none;
+            padding:12px 28px;
+            border-radius:999px;
+            font-size:15px;
+            cursor:pointer;
+            font-weight:bold;
+            box-shadow:0 4px 12px rgba(15,23,42,0.25);
+        }
+        .download-btn:hover{
+            background:#094a86;
+        }
+
+        @media print {
+            body{
+                background:#ffffff;
+            }
+            .download-container{
+                display:none;
+            }
+            .wrapper{
+                box-shadow:none;
+                margin:0;
+                border-radius:0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <!-- Replace src with the correct path to your logo file -->
+            <img src="https://mitesolutions.com/images/logo.png" alt="MITE Solutions FZC Logo">
+            <div class="company-name">
+                MITE Solutions FZC
+            </div>
+        </div>
+        <div class="proposal-title">
+            Website Development Proposal
+        </div>
+    </div>
+
+    <!-- CLIENT INFO -->
+    <div class="two-col">
+        <div>
+            <h3>Submitted To</h3>
+            <p><strong>Indian Association Sharjah</strong><br>
+                Sharjah, UAE</p>
+        </div>
+        <div>
+            <h3>Submitted By</h3>
+            <p><strong>Navas P</strong><br>
+               Business Development Manager<br>
+               MITE Solutions FZC<br>
+               Mobile: <a href="tel:+971553023232">0553023232</a><br>
+               Email: <a href="mailto:navas@mitesolutions.com">navas@mitesolutions.com</a></p>
+        </div>
+    </div>
+
+    <h1>Proposal for Dynamic Web Portal<br>for Indian Association Sharjah</h1>
+
+    <p>Thank you for the opportunity to propose a complete digital solution for
+        <strong>Indian Association Sharjah</strong>. This proposal outlines a modern, secure and scalable
+        web portal that will streamline member services, hall bookings, consular support and
+        communication, while creating new revenue opportunities for the Association.</p>
+
+    <!-- PROJECT OVERVIEW -->
+    <h2>1. Project Overview</h2>
+    <p>The new website will be a dynamic, database-driven portal developed using
+        <strong>Python Django</strong>. It will consist of two primary layers:</p>
+
+    <ul>
+        <li><strong>Front-End (Public Website):</strong> For members and general public to access information,
+            services and online forms.</li>
+        <li><strong>Back-End (Admin Portal):</strong> For administrators to manage content, users, roles,
+            bookings, services and revenue banners.</li>
+    </ul>
+
+    <p>The site will be mobile-responsive, multilingual on key service pages, and designed with
+        a clean and accessible layout suitable for a wide range of users.</p>
+
+    <!-- OBJECTIVES -->
+    <h2>2. Key Objectives</h2>
+    <ul>
+        <li>Provide a central online hub for information and services of Indian Association Sharjah.</li>
+        <li>Streamline <strong>hall booking</strong> and <strong>consular services</strong> with online forms,
+            document uploads and payment integration.</li>
+        <li>Offer a user-friendly and multilingual(Malayalam & Hindi) interface that helps users complete processes
+            without the need for typing centre support.</li>
+        <li>Enable administrators to manage users, roles, content and digital advertising
+            banners from a secure backend.</li>
+        <li>Create new <strong>revenue channels</strong> via banner advertising for partners such as restaurants,
+            event companies, typing centres and business setup firms.</li>
+    </ul>
+
+    <!-- SCOPE -->
+    <h2>3. Functional Scope</h2>
+
+    <h3>3.1 User Roles &amp; Administration</h3>
+    <ul>
+        <li>Secure admin login.</li>
+        <li>Role creation and management (e.g. Super Admin, Content Admin, Hall Coordinator,
+            Consular Coordinator, etc.).</li>
+        <li>User management – create users, assign roles and reset passwords.</li>
+        <li>Audit-friendly activity tracking (basic logs of key actions).</li>
+    </ul>
+
+    <h3>3.2 Home Page</h3>
+    <ul>
+        <li>Hero banner with key messages and quick links to services.</li>
+        <li>Brief introduction to Indian Association Sharjah.</li>
+        <li>Highlights of upcoming events, news and quick call-to-action buttons.</li>
+    </ul>
+
+    <h3>3.3 Management Members &amp; Messages</h3>
+    <ul>
+        <li>Admin can add, edit and remove managing committee members.</li>
+        <li>Upload profile photographs, names, designations and short messages.</li>
+        <li>Optionally assign individual login credentials (username &amp; password) if required.</li>
+    </ul>
+
+    <h3>3.4 Hall Booking Management (Two Halls)</h3>
+    <ul>
+        <li>Create and maintain two hall profiles with photos, capacity, facilities and pricing.</li>
+        <li>Public interface showing availability calendar and hall details.</li>
+        <li>Online hall booking request form.</li>
+        <li>Payment gateway integration so users can pay online (integration with the chosen
+            payment provider’s API).</li>
+        <li>Automatic email notification to admin on each booking request and payment status.</li>
+        <li>Admin dashboard to view and manage hall bookings.</li>
+        <li><strong>Multilingual support</strong> for hall booking pages (e.g. English / Malayalam / Arabic as defined).</li>
+        <li><strong>Banner advertising space</strong> on hall booking pages for partner restaurants or event companies.</li>
+    </ul>
+
+    <h3>3.5 Consular Services Module</h3>
+    <ul>
+        <li>Admin can create and manage various consular services (e.g., attestations, NOCs, etc.).</li>
+        <li>Each service can have detailed description, required documents, fees and processing steps.</li>
+        <li>Users can select a service and upload required documents securely.</li>
+        <li>Form validations and clear instructions to minimize user errors.</li>
+        <li>Basic status communication (acknowledgment email upon submission).</li>
+        <li><strong>Multilingual support</strong> for consular service pages to help normal users understand and fill forms.</li>
+        <li><strong>Banner advertising space</strong> for typing centres and business setup firms (revenue generator).</li>
+    </ul>
+
+    <h3>3.6 News Page</h3>
+    <ul>
+        <li>Admin can add news items with title, description, date and accompanying photograph.</li>
+        <li>News listing page with search / filter by date.</li>
+        <li>Individual news detail pages.</li>
+    </ul>
+
+    <h3>3.7 Events Page</h3>
+    <ul>
+        <li>Admin can publish event details with poster, description, date, time and venue.</li>
+        <li>Photo gallery support for each event.</li>
+        <li>Option to highlight upcoming events on the home page.</li>
+    </ul>
+
+    <h3>3.8 Contact Page</h3>
+    <ul>
+        <li>All key contact details, location map (Google Maps embed or similar).</li>
+        <li>General enquiry form (name, phone, email, subject, message).</li>
+        <li>Form submissions routed to designated Association email.</li>
+    </ul>
+
+    <h3>3.9 Revenue Generation Banners</h3>
+    <ul>
+        <li>Configurable banner spaces on:
+            <ul>
+                <li>Hall Booking pages – for restaurants / event companies.</li>
+                <li>Consular Services pages – for typing centres / business setup firms.</li>
+            </ul>
+        </li>
+        <li>Admin interface to upload banner images, partner details and links.</li>
+    </ul>
+
+    <!-- TECHNOLOGY -->
+    <h2>4. Technology Stack</h2>
+    <table class="info-table">
+        <tr>
+            <th>Layer</th>
+            <th>Technology</th>
+        </tr>
+        <tr>
+            <td>Back-End</td>
+            <td>Python Django Framework</td>
+        </tr>
+        <tr>
+            <td>Front-End</td>
+            <td>HTML5, CSS3, JavaScript (and modern UI components)</td>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>PostgreSQL / MySQL (to be finalized with your IT team)</td>
+        </tr>
+        <tr>
+            <td>Hosting</td>
+            <td>Hosting to be provided by Indian Association Sharjah</td>
+        </tr>
+        <tr>
+            <td>Security</td>
+            <td>Role-based access control, SSL (on your hosting), secure form handling</td>
+        </tr>
+    </table>
+
+    <!-- TIMELINE -->
+    <h2>5. Project Timeline</h2>
+    <p>Estimated total duration: <strong>40 days</strong> from final approval and receipt of all required content.</p>
+    <ul class="timeline-list">
+        <li><strong>Week 1:</strong> Requirements confirmation, information architecture, UI/UX wireframes.</li>
+        <li><strong>Week 2:</strong> Front-end design of all major pages, theme approval.</li>
+        <li><strong>Week 3:</strong> Back-end development – user roles, admin portal, content management.</li>
+        <li><strong>Week 4:</strong> Hall booking module, consular services module, multilingual setup.</li>
+        <li><strong>Week 5:</strong> Payment gateway integration, news &amp; events, contact forms, banner management.</li>
+        <li><strong>Week 6:</strong> Testing, bug fixing, content population, training &amp; go-live support.</li>
+    </ul>
+
+    <!-- COMMERCIALS -->
+    <h2>6. Commercials</h2>
+    <div class="price-box">
+        <div>
+            <div>Professional Fees for Dynamic Website Development</div>
+            <strong>AED 23,700.00</strong>
+        </div>
+        <div>
+            <span class="tag">One-time development cost</span>
+        </div>
+    </div>
+
+    <h3>6.1 Inclusions</h3>
+    <ul>
+        <li>Complete design and development of the website as per scope above.</li>
+        <li>Multilingual implementation for consular services and hall booking pages.</li>
+        <li>Integration with one payment gateway selected by the Association.</li>
+        <li>Admin training (online session) for content and booking management.</li>
+        <li>Deployment support on your hosting environment.</li>
+    </ul>
+
+    <h3>6.2 Exclusions / Client Responsibilities</h3>
+    <ul>
+        <li>Domain name and hosting services (to be provided by Indian Association Sharjah).</li>
+        <li>Payment gateway account / merchant onboarding and associated transaction charges.</li>
+        <li>Translation of content into additional languages (Association to supply final approved text).</li>
+        <li>Ongoing maintenance / support after go-live (can be provided under a separate AMC if desired).</li>
+    </ul>
+
+    <div class="highlight-box">
+        <strong>Note:</strong> Any major change in scope or additional modules requested after approval
+        can be estimated and billed separately upon mutual agreement.
+    </div>
+
+    <!-- MAINTENANCE -->
+    <h2>7. Optional Annual Maintenance (AMC)</h2>
+    <p>If desired, MITE Solutions FZC can provide an optional Annual Maintenance Contract including
+        updates, security fixes, small content changes and technical support. The scope and pricing for
+        AMC can be discussed after the portal has gone live.</p>
+
+    <!-- CONCLUSION -->
+    <h2>8. Conclusion</h2>
+    <p>MITE Solutions FZC is pleased to partner with
+        <strong>Indian Association Sharjah</strong> to build a modern,
+        user-friendly and revenue-generating digital platform. Our experience with Python Django and
+        dynamic portals, combined with your strong community presence, will help deliver a
+        professional online experience for members and visitors.</p>
+
+    <p>We look forward to your approval and the opportunity to proceed with this project.</p>
+
+    <!-- SIGNATURES -->
+    <div class="signature-block two-col">
+        <div>
+            <div class="signature-line"></div>
+            <p><strong>For MITE Solutions FZC</strong></p>
+        </div>
+        <div>
+            <div class="signature-line"></div>
+            <p><strong>For Indian Association Sharjah</strong></p>
+        </div>
+    </div>
+
+</div>
+
+<!-- DOWNLOAD BUTTON (Generate PDF) -->
+<div class="download-container">
+    <button class="download-btn" id="btn-generate-pdf" type="button">Download Proposal (PDF)</button>
+</div>
+
+<!-- html2pdf for client-side PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusQvNvZququh6r2dD8VZJ3CYfQ2dA3r3u1bQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    (function () {
+        const btn = document.getElementById('btn-generate-pdf');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+            const element = document.querySelector('.wrapper');
+            if (!element) return;
+            const opt = {
+                margin:       [0.5, 0.5, 0.5, 0.5],
+                filename:     'MITE-Solutions-Proposal.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save().catch(function () {
+                // If html2pdf fails (e.g., blocked script), fallback to browser print.
+                window.print();
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>
